@@ -1,6 +1,7 @@
 package maverick.provbattle.com.probattle.ui.activities;
 
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +9,10 @@ import android.view.View;
 
 import maverick.provbattle.com.probattle.ui.fragments.Crypto2CryptoConversionFragment;
 import maverick.provbattle.com.probattle.ui.fragments.CryptoDetailsFragment;
+import maverick.provbattle.com.probattle.ui.fragments.CryptoToLocalConversionFragment;
 import maverick.provbattle.com.probattle.ui.fragments.LocalConversionsFragment;
 import maverick.provbattle.com.probattle.R;
+import maverick.provbattle.com.probattle.ui.fragments.LocalToCryptoConversionFragment;
 import maverick.provbattle.com.probattle.ui.fragments.StatisticalRepresentationFragment;
 import maverick.provbattle.com.probattle.databinding.ActivityStartBinding;
 
@@ -17,7 +20,9 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         Crypto2CryptoConversionFragment.OnFragmentInteractionListener,
         CryptoDetailsFragment.OnFragmentInteractionListener,
         LocalConversionsFragment.OnFragmentInteractionListener,
-        StatisticalRepresentationFragment.OnFragmentInteractionListener {
+        StatisticalRepresentationFragment.OnFragmentInteractionListener ,
+        LocalToCryptoConversionFragment.OnFragmentInteractionListener,
+        CryptoToLocalConversionFragment.OnFragmentInteractionListener{
 
     ActivityStartBinding binding;
     @Override
@@ -38,6 +43,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         binding.cryptoDetails.setOnClickListener(this);
         binding.cryptoToCrypto.setOnClickListener(this);
         binding.statistics.setOnClickListener(this);
+        binding.cryptoConversions.setOnClickListener(this);
     }
 
     @Override
@@ -65,6 +71,13 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.container,new CryptoDetailsFragment())
+                    .commit();
+        }
+        else if(binding.cryptoConversions==view){
+            binding.drawer.closeDrawer(GravityCompat.START);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container,new LocalConversionsFragment())
                     .commit();
         }
     }
@@ -115,5 +128,10 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
             case LocalConversionsFragment.OnFragmentInteractionListener.MENU:
                 binding.drawer.openDrawer(GravityCompat.START);
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

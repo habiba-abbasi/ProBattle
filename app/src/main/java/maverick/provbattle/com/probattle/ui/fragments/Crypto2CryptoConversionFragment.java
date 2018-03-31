@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,16 +79,72 @@ public class Crypto2CryptoConversionFragment extends Fragment implements View.On
     @Override
     public void onClick(View view) {
         if(view==binding.convertButton){
-             convert();
+
+            if(binding.enteredCrypto.getSelectedItemPosition()!=binding.calculatedCrypto.getSelectedItemPosition()){
+
+                if(binding.enteredAmount.length()>0){
+
+                }
+                else{
+                    Toast.makeText(getContext(), "Enter amount", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else{
+                Toast.makeText(getContext(), "Select different crypto currency to convert", Toast.LENGTH_SHORT).show();
+            }
         }
         if(view==binding.menuIcon){
             mListener.onCrypto2CryptoFragmentInteraction(OnFragmentInteractionListener.MENU);
         }
     }
 
-    public void convert(){
-        binding.calculatedAmount.setText(binding.enteredAmount.getText().toString());
+
+
+     private double BTCtoETH(double amount){
+
+        amount=amount/398.969;
+        return amount;
+    }  private double BTCtoXRP(double amount){
+
+        amount=amount / 0.007389;
+        return amount;
+    }  private double BTCtoBCH(double amount){
+
+        amount=amount/0.101123;
+        return amount;
+    }  private double BTCtoLTC(double amount){
+
+        amount=amount/0.0173081;
+        return amount;
     }
+    private double ETHtoBTC(double amount){
+
+        amount=amount*0.0572;
+        return amount;
+    }
+
+    private double XRPtoBTc(double amount){
+
+        amount=amount*0.00007389;
+        return amount;
+    }
+
+   private double BCHtoBTc(double amount){
+       amount=amount*0.101123;
+       return amount;
+   }
+
+   private double LTCtoBTc(double amount){
+       amount=amount*0.173081;
+       return amount;
+   }
+
+
+
+
+
+
+
 
 
     public interface OnFragmentInteractionListener {

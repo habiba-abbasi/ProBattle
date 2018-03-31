@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ import maverick.provbattle.com.probattle.databinding.FragmentLocalToCryptoConver
  * {@link CryptoToLocalConversionFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class CryptoToLocalConversionFragment extends Fragment implements View.OnClickListener{
+public class CryptoToLocalConversionFragment extends Fragment implements View.OnClickListener {
     List<String> cryptoNames;
     FragmentCryptoToLocalConversionBinding binding;
     private OnFragmentInteractionListener mListener;
@@ -40,7 +41,6 @@ public class CryptoToLocalConversionFragment extends Fragment implements View.On
         binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.fragment_crypto_to_local_conversion, container, false);
         cryptoNames = new ArrayList<>();
         cryptoNames.add("BTC");
-        cryptoNames.add("ETH");
         cryptoNames.add("XRP");
         cryptoNames.add("BCH");
         cryptoNames.add("LTC");
@@ -55,11 +55,9 @@ public class CryptoToLocalConversionFragment extends Fragment implements View.On
         return binding.getRoot();
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    private void setupLitener() {
+
+        binding.convertButtonCryptoToLocal.setOnClickListener(this);
     }
 
     @Override
@@ -82,20 +80,43 @@ public class CryptoToLocalConversionFragment extends Fragment implements View.On
     @Override
     public void onClick(View view) {
 
+        if (view == binding.convertButtonCryptoToLocal) {
+
+            if (binding.enteredAmountCrypto.length() > 0) {
+                double amount = Double.parseDouble(binding.enteredAmountCrypto.getText().toString());
+
+                switch (binding.enteredCryptoSpinner.getSelectedItemPosition()) {
+                    case 0:
+                        binding.calculatedAmount.setText(String.valueOf(BTCtoPKR(amount)));
+                    case 1:
+//                  binding.calculatedAmount.setText(String.valueOf(BtCoPKR(amount)));
+                    case 2:
+                        binding.calculatedAmount.setText(String.valueOf(BTCtoPKR(amount)));
+                    case 3:
+
+
+                }
+
+            }
+         else {
+            Toast.makeText(getContext(), "Enter amount", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+}
+
+
+    private double BTCtoPKR(double amount) {
+
+        amount = amount * 794742.81;
+
+        return amount;
+
     }
+
+
+public interface OnFragmentInteractionListener {
+    // TODO: Update argument type and name
+    void onFragmentInteraction(Uri uri);
+}
 }

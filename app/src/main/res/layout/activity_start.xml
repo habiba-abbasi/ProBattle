@@ -133,6 +133,17 @@
                     <!--app:layout_constraintEnd_toEndOf="parent"-->
                     <!--app:layout_constraintTop_toBottomOf="@id/statistics"-->
                     <!--/>-->
+
+                <TextView
+                    android:id="@+id/cryptoConversions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:text="General Coversions"
+                    app:layout_constraintTop_toBottomOf="@id/statistics"
+
+                    app:layout_constraintStart_toStartOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
         </android.support.design.widget.NavigationView>
