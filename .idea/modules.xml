@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ProBattle.iml" filepath="$PROJECT_DIR$/ProBattle.iml" />
-      <module fileurl="file://C:\Users\Roshaann 2.7 gpa\AndroidStudioProjects\ProBattle\Probattle.iml" filepath="C:\Users\Roshaann 2.7 gpa\AndroidStudioProjects\ProBattle\Probattle.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Roshaann 2.7 gpa\AndroidStudioProjects\ProBattle\app\app.iml" filepath="C:\Users\Roshaann 2.7 gpa\AndroidStudioProjects\ProBattle\app\app.iml" />
     </modules>
   </component>
 </project>
