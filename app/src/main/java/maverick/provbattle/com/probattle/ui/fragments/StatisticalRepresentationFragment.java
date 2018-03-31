@@ -44,6 +44,7 @@ public class StatisticalRepresentationFragment extends Fragment implements View.
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.fragment_statistical_representation, container, false);
         change = new ArrayList<>();
+        cryptoNames= new ArrayList<>();
         change.add("1 hour change");
         change.add("24 hours change");
         change.add("7 days change");
@@ -62,6 +63,7 @@ public class StatisticalRepresentationFragment extends Fragment implements View.
                 cryptoNames
         );
         binding.changeSpinner.setAdapter(adapter);
+        binding.changeSpinnerCryptoName.setAdapter(nameAdapter);
         binding.graph.setVisibility(View.INVISIBLE);
 
         binding.changeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -99,6 +101,8 @@ public class StatisticalRepresentationFragment extends Fragment implements View.
     }
 
     public void setValueOnGraph(){
+        binding.graph.removeAllSeries();
+        System.out.println("logg setOngraphChange");
         double percentChange;
 
         CryptoModel value=null;
@@ -112,7 +116,7 @@ public class StatisticalRepresentationFragment extends Fragment implements View.
         if(value==null){
             return;
         }
-
+        System.out.println("logg spinner value change="+spinnerValueChange);
         if(spinnerValueChange.equals("1 hour change")){
             double sum=Double.parseDouble(value.getPrice_usd());
             percentChange=Double.parseDouble(value.getPercent_change_1h());
