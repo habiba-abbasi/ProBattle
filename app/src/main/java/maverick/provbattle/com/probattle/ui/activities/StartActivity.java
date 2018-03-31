@@ -35,8 +35,9 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     }
     private void setupListeners(){
         binding.menuIcon.setOnClickListener(this);
-        binding.crypto2Crypto.setOnClickListener(this);
-        binding.statisticalRepresentation.setOnClickListener(this);
+        binding.cryptoDetails.setOnClickListener(this);
+        binding.cryptoToCrypto.setOnClickListener(this);
+        binding.statistics.setOnClickListener(this);
     }
 
     @Override
@@ -45,18 +46,25 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         if(binding.menuIcon==view){
             binding.drawer.openDrawer(GravityCompat.START);
         }
-        else if (binding.crypto2Crypto==view){
+        else if (binding.cryptoToCrypto==view){
             binding.drawer.closeDrawer(GravityCompat.START);
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.container,new Crypto2CryptoConversionFragment())
                     .commit();
         }
-        else if(binding.statisticalRepresentation==view){
+        else if(binding.statistics==view){
             binding.drawer.closeDrawer(GravityCompat.START);
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.container,new StatisticalRepresentationFragment())
+                    .commit();
+        }
+        else if(binding.cryptoDetails==view){
+            binding.drawer.closeDrawer(GravityCompat.START);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container,new CryptoDetailsFragment())
                     .commit();
         }
     }
@@ -75,20 +83,37 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onCryptoDetailsFragmentInteraction(int i) {
 
+        switch(i){
+            case CryptoDetailsFragment.OnFragmentInteractionListener.MENU:
+                binding.drawer.openDrawer(GravityCompat.START);
+        }
     }
 
     @Override
     public void onCrypto2CryptoFragmentInteraction(int i) {
 
+        switch(i){
+            case Crypto2CryptoConversionFragment.OnFragmentInteractionListener.MENU:
+                binding.drawer.openDrawer(GravityCompat.START);
+        }
     }
 
     @Override
     public void onStatisticalRepresentationFragmentInteraction(int i) {
+
+        switch(i){
+            case StatisticalRepresentationFragment.OnFragmentInteractionListener.MENU:
+                binding.drawer.openDrawer(GravityCompat.START);
+        }
 
     }
 
     @Override
     public void onLocalConversionsFragmentInteraction(int i) {
 
+        switch(i){
+            case LocalConversionsFragment.OnFragmentInteractionListener.MENU:
+                binding.drawer.openDrawer(GravityCompat.START);
+        }
     }
 }

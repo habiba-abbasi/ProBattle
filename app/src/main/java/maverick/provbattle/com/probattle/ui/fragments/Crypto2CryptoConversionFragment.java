@@ -55,6 +55,7 @@ public class Crypto2CryptoConversionFragment extends Fragment implements View.On
 
     private void setupListener() {
         binding.convertButton.setOnClickListener(this);
+        binding.menuIcon.setOnClickListener(this);
     }
 
     @Override
@@ -79,6 +80,9 @@ public class Crypto2CryptoConversionFragment extends Fragment implements View.On
         if(view==binding.convertButton){
              convert();
         }
+        if(view==binding.menuIcon){
+            mListener.onCrypto2CryptoFragmentInteraction(OnFragmentInteractionListener.MENU);
+        }
     }
 
     public void convert(){
@@ -87,6 +91,7 @@ public class Crypto2CryptoConversionFragment extends Fragment implements View.On
 
 
     public interface OnFragmentInteractionListener {
+        int MENU=0;
         // TODO: Update argument type and name
         void onCrypto2CryptoFragmentInteraction(int i);
     }

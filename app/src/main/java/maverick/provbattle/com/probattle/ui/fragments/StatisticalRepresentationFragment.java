@@ -180,6 +180,7 @@ public class StatisticalRepresentationFragment extends Fragment implements View.
             Toast.makeText(getActivity(),"Please select change.",Toast.LENGTH_SHORT).show();
         }
 
+        binding.menuIcon.setOnClickListener(this);
     }
 
 
@@ -203,10 +204,14 @@ public class StatisticalRepresentationFragment extends Fragment implements View.
     @Override
     public void onClick(View view) {
 
+        if(view==binding.menuIcon){
+            mListener.onStatisticalRepresentationFragmentInteraction(OnFragmentInteractionListener.MENU);
+        }
     }
 
 
     public interface OnFragmentInteractionListener {
+        int MENU=0;
         // TODO: Update argument type and name
         void onStatisticalRepresentationFragmentInteraction(int i);
     }

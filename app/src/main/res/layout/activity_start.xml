@@ -49,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:background="@color/navigationColor"
 
 
             >
@@ -56,44 +57,82 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:scaleType="centerCrop"
+                    android:layout_height="150dp"
+                    android:src="@drawable/nav_icon"
+                    app:layout_constraintTop_toTopOf="@id/v1"
+                    app:layout_constraintBottom_toBottomOf="@id/v1"
+                    app:layout_constraintStart_toStartOf="@id/v1"
+                    app:layout_constraintEnd_toEndOf="@id/v1"/>
+                <View
+                    android:id="@+id/v1"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintTop_toTopOf="parent"/>
                 <!--Crypto2Crypto Conversion-->
                 <TextView
-                    android:id="@+id/crypto_2_crypto"
+                    android:id="@+id/cryptoDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:layout_marginTop="50dp"
-                    android:text="First Item"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingLeft="8dp"
+                    android:gravity="center_vertical"
+                    android:text="Crypto Details"
+                    app:layout_constraintTop_toBottomOf="@id/v1"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="2dp"
-                    android:background="#000000"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/crypto_2_crypto"
-/>
-            <!--Statistical representation-->
+                <!--<View-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:background="#000000"-->
+                    <!--app:layout_constraintStart_toStartOf="parent"-->
+                    <!--app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--app:layout_constraintTop_toBottomOf="@id/cryptoDetails"-->
+<!--/>-->
+            <!--Crypto To Crypto-->
                 <TextView
-                    android:id="@+id/statistical_representation"
+                    android:id="@+id/cryptoToCrypto"
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="50dp"
-                    android:text="First Item"
-                    app:layout_constraintTop_toBottomOf="@id/crypto_2_crypto"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="56dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:text="Crypto To Crypto Conversion"
+                    app:layout_constraintTop_toBottomOf="@id/cryptoDetails"
+
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="2dp"
-                    android:background="#000000"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/statistical_representation"
-                    />
+                <!--<View-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:background="#000000"-->
+                    <!--app:layout_constraintStart_toStartOf="parent"-->
+                    <!--app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--app:layout_constraintTop_toBottomOf="@id/cryptoToCrypto"-->
+                    <!--/>-->
+
+                <!--Graphical representation-->
+                <TextView
+                    android:id="@+id/statistics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:text="Statistical Representation"
+                    app:layout_constraintTop_toBottomOf="@id/cryptoToCrypto"
+
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <!--<View-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:background="#000000"-->
+                    <!--app:layout_constraintStart_toStartOf="parent"-->
+                    <!--app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--app:layout_constraintTop_toBottomOf="@id/statistics"-->
+                    <!--/>-->
             </android.support.constraint.ConstraintLayout>
 
         </android.support.design.widget.NavigationView>

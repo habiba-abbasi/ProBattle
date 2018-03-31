@@ -1,5 +1,6 @@
 package maverick.provbattle.com.probattle.ui.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
@@ -51,6 +52,7 @@ public class CryptoDetailsFragment extends Fragment implements View.OnClickListe
     FragmentCryptoDetailsBinding binding;
     List<CryptoModel> list;
     ApiInterface apiInterface;
+    ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +61,7 @@ public class CryptoDetailsFragment extends Fragment implements View.OnClickListe
         binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.fragment_crypto_details, container, false);
 
         list = new ArrayList<>();
+        progressDialog=new ProgressDialog(getContext());
         final CryptoAdapter cryptoAdapter = new CryptoAdapter(list);
         binding.recyclerView.setAdapter(cryptoAdapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -68,11 +71,14 @@ public class CryptoDetailsFragment extends Fragment implements View.OnClickListe
 
         //end point /api/users?
         Call<List<CryptoModel>> call = apiInterface.getCryptoList(10);
+        progressDialog.setMessage("Fetching ");
+        progressDialog.show();
 
         call.enqueue(new Callback<List<CryptoModel>>() {
             @Override
             public void onResponse(Call<List<CryptoModel>> call, Response<List<CryptoModel>> response) {
 
+                progressDialog.dismiss();
                 //succesfuull
                 if (response.isSuccessful()) {
                     list = response.body();
@@ -97,6 +103,7 @@ public class CryptoDetailsFragment extends Fragment implements View.OnClickListe
 
             @Override
             public void onFailure(Call<List<CryptoModel>> call, Throwable t) {
+                progressDialog.dismiss();
                 System.out.println("Hello " + t.getMessage());
             }
         });
@@ -110,6 +117,7 @@ public class CryptoDetailsFragment extends Fragment implements View.OnClickListe
 
     private void setupListener() {
 
+        binding.menuIcon.setOnClickListener(this);
     }
 
     @Override
@@ -132,10 +140,14 @@ public class CryptoDetailsFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
+        if(view==binding.menuIcon){
+            mListener.onCryptoDetailsFragmentInteraction(OnFragmentInteractionListener.MENU);
+        }
     }
 
 
     public interface OnFragmentInteractionListener {
+        int MENU=0;
         // TODO: Update argument type and name
         void onCryptoDetailsFragmentInteraction(int i);
     }
