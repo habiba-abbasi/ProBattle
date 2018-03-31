@@ -7,6 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import maverick.provbattle.com.probattle.R;
 import maverick.provbattle.com.probattle.databinding.FragmentStatisticalRepresentationBinding;
@@ -21,24 +29,41 @@ import maverick.provbattle.com.probattle.databinding.FragmentStatisticalRepresen
 public class StatisticalRepresentationFragment extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
-FragmentStatisticalRepresentationBinding binding;
+    FragmentStatisticalRepresentationBinding binding;
+    List<String> change;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       binding= DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.fragment_statistical_representation, container, false);
+        binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.fragment_statistical_representation, container, false);
+        change= new ArrayList<>();
+        change.add("1 hour change");
+        change.add("24 hours change");
+        change.add("7 days change");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getActivity(),
+                android.R.layout.simple_spinner_item,
+                change
+        );
+        binding.changeSpinner.setAdapter(adapter);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
 
+        binding.graph.addSeries(series);
         setupListener();
         return binding.getRoot();
     }
 
 
-
-    private void setupListener(){
+    private void setupListener() {
 
     }
-
 
 
     @Override

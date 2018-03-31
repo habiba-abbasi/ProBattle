@@ -2,6 +2,7 @@ package maverick.provbattle.com.probattle.ui.fragments;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,26 +14,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import maverick.provbattle.com.probattle.R;
-import maverick.provbattle.com.probattle.databinding.FragmentCrypto2CryptoConversionBinding;
-
+import maverick.provbattle.com.probattle.databinding.FragmentCryptoToLocalConversionBinding;
+import maverick.provbattle.com.probattle.databinding.FragmentLocalToCryptoConversionBinding;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Crypto2CryptoConversionFragment.OnFragmentInteractionListener} interface
+ * {@link CryptoToLocalConversionFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class Crypto2CryptoConversionFragment extends Fragment implements View.OnClickListener {
-
-    private OnFragmentInteractionListener mListener;
-    FragmentCrypto2CryptoConversionBinding binding;
+public class CryptoToLocalConversionFragment extends Fragment implements View.OnClickListener{
     List<String> cryptoNames;
+    FragmentCryptoToLocalConversionBinding binding;
+    private OnFragmentInteractionListener mListener;
+
+    public CryptoToLocalConversionFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.fragment_crypto2_crypto_conversion, container, false);
+        binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.fragment_crypto_to_local_conversion, container, false);
         cryptoNames = new ArrayList<>();
         cryptoNames.add("BTC");
         cryptoNames.add("ETH");
@@ -44,17 +49,17 @@ public class Crypto2CryptoConversionFragment extends Fragment implements View.On
                 android.R.layout.simple_spinner_item,
                 cryptoNames
         );
+        binding.convertButtonCryptoToLocal.setOnClickListener(this);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.enteredCrypto.setAdapter(adapter);
-        binding.calculatedCrypto.setAdapter(adapter);
-                setupListener();
-
+        binding.enteredCryptoSpinner.setAdapter(adapter);
         return binding.getRoot();
     }
 
-
-    private void setupListener() {
-        binding.convertButton.setOnClickListener(this);
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
     }
 
     @Override
@@ -76,18 +81,21 @@ public class Crypto2CryptoConversionFragment extends Fragment implements View.On
 
     @Override
     public void onClick(View view) {
-        if(view==binding.convertButton){
-             convert();
-        }
+
     }
 
-    public void convert(){
-        binding.calculatedAmount.setText(binding.enteredAmount.getText().toString());
-    }
-
-
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onCrypto2CryptoFragmentInteraction(int i);
+        void onFragmentInteraction(Uri uri);
     }
 }

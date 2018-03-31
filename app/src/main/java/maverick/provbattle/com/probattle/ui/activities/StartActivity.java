@@ -30,6 +30,8 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     }
     private void setupListeners(){
         binding.menuIcon.setOnClickListener(this);
+        binding.crypto2Crypto.setOnClickListener(this);
+        binding.statisticalRepresentation.setOnClickListener(this);
     }
 
     @Override
@@ -37,6 +39,20 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
 
         if(binding.menuIcon==view){
             binding.drawer.openDrawer(GravityCompat.START);
+        }
+        else if (binding.crypto2Crypto==view){
+            binding.drawer.closeDrawer(GravityCompat.START);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container,new Crypto2CryptoConversionFragment())
+                    .commit();
+        }
+        else if(binding.statisticalRepresentation==view){
+            binding.drawer.closeDrawer(GravityCompat.START);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container,new StatisticalRepresentationFragment())
+                    .commit();
         }
     }
 

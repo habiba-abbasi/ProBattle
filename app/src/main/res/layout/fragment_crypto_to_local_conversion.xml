@@ -1,0 +1,76 @@
+<layout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="maverick.provbattle.com.probattle.ui.fragments.CryptoToLocalConversionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+            <EditText
+                android:id="@+id/entered_amount_crypto"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:hint="Enter amount"
+                android:layout_weight="0.8"
+                android:inputType="number"
+                />
+            <Spinner
+                android:id="@+id/entered_crypto_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                ></Spinner>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+            <TextView
+                android:id="@+id/calculated_amount"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:text="00.00"
+                android:textSize="20dp"
+                android:layout_margin="5dp"
+                android:layout_weight="0.8"
+                />
+            <TextView
+                android:id="@+id/calculated_crypto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:text="PKR"
+                android:textSize="20dp"
+                android:layout_gravity="center_horizontal"
+                ></TextView>
+        </LinearLayout>
+        <Button
+            android:id="@+id/convert_button_crypto_to_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Convert"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:textAllCaps="false"
+            />
+
+    </LinearLayout>
+
+</FrameLayout>
+</layout>

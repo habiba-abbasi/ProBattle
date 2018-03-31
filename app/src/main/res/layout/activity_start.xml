@@ -11,12 +11,14 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
+            android:id="@+id/container"
             android:layout_height="match_parent">
 
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="56dp"
-
+                android:id="@+id/toollBar"
+                android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -54,9 +56,9 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
+                <!--Crypto2Crypto Conversion-->
                 <TextView
-                    android:id="@+id/firstITem"
+                    android:id="@+id/crypto_2_crypto"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginTop="50dp"
@@ -65,7 +67,33 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:background="#000000"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/crypto_2_crypto"
+/>
+            <!--Statistical representation-->
+                <TextView
+                    android:id="@+id/statistical_representation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="50dp"
+                    android:text="First Item"
+                    app:layout_constraintTop_toBottomOf="@id/crypto_2_crypto"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:background="#000000"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/statistical_representation"
+                    />
             </android.support.constraint.ConstraintLayout>
 
         </android.support.design.widget.NavigationView>
