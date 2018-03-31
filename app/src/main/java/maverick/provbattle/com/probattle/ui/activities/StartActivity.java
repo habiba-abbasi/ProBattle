@@ -27,6 +27,11 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         binding= DataBindingUtil.setContentView(this, R.layout.activity_start);
         setupListeners();
 
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container,new CryptoDetailsFragment())
+                .commit();
+
     }
     private void setupListeners(){
         binding.menuIcon.setOnClickListener(this);
